@@ -1,0 +1,32 @@
+=====前100条数据=====
+Average Rouge-1 (F): 0.3017
+Average Rouge-2 (F): 0.1128
+Average Rouge-L (F): 0.2108
+Average Token Generate Sum: 60.0000
+Average Skip Layer: 5.2693
+Average Infer Time: 10.4351
+
+=====前200条数据=====
+Average Rouge-1 (F): 0.3055
+Average Rouge-2 (F): 0.1176
+Average Rouge-L (F): 0.2172
+Average Token Generate Sum: 60.0000
+Average Skip Layer: 5.2603
+Average Infer Time: 10.9081
+
+=====前300条数据=====
+Average Rouge-1 (F): 0.3108
+Average Rouge-2 (F): 0.1198
+Average Rouge-L (F): 0.2203
+Average Token Generate Sum: 60.0000
+Average Skip Layer: 5.2945
+Average Infer Time: 11.0249
+
+=====前400条数据=====
+Average Rouge-1 (F): 0.3087
+Average Rouge-2 (F): 0.1168
+Average Rouge-L (F): 0.2155
+Average Token Generate Sum: 60.0000
+Average Skip Layer: 5.2886
+Average Infer Time: 11.0041
+

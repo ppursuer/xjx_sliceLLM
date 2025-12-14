@@ -1,0 +1,49 @@
+前2条数据Average Rouge-1 (F): 0.0929
+Average Rouge-2 (F): 0.0147
+Average Rouge-L (F): 0.0786
+Average Token Generate Sum: 60.0000
+Average Skip Layer: 6.3333
+Average Infer Time: 7.1049
+前4条数据Average Rouge-1 (F): 0.1576
+Average Rouge-2 (F): 0.0447
+Average Rouge-L (F): 0.1142
+Average Token Generate Sum: 60.0000
+Average Skip Layer: 5.9708
+Average Infer Time: 7.0765
+前6条数据Average Rouge-1 (F): 0.1964
+Average Rouge-2 (F): 0.0564
+Average Rouge-L (F): 0.1325
+Average Token Generate Sum: 60.0000
+Average Skip Layer: 5.5694
+Average Infer Time: 7.1837
+前8条数据Average Rouge-1 (F): 0.1938
+Average Rouge-2 (F): 0.0506
+Average Rouge-L (F): 0.1345
+Average Token Generate Sum: 60.0000
+Average Skip Layer: 5.5771
+Average Infer Time: 7.1972
+前10条数据Average Rouge-1 (F): 0.1833
+Average Rouge-2 (F): 0.0405
+Average Rouge-L (F): 0.1245
+Average Token Generate Sum: 60.0000
+Average Skip Layer: 5.6717
+Average Infer Time: 7.0714
+
+================= Overall Evaluation =================
+Model: llama2-7b
+Dataset: xsum_summarization
+Sample: 10
+Max Generate len: 60
+Few shot: 1
+Inference strategy: Dynamic_Skip_Inf
+Experiment Total Time: 00:01:17
+Average Rouge-1 (F): 0.1833
+Average Rouge-2 (F): 0.0405
+Average Rouge-L (F): 0.1245
+Average Token Generate Sum: 60.0000
+Average Skip Layer: 5.6717
+Average Infer Time: 7.0714
+End layer: 29
+Start layer: 29
+Min start layer: 22
+=======================================================

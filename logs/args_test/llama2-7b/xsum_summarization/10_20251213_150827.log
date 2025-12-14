@@ -1,0 +1,19 @@
+
+================= Overall Evaluation =================
+Model: llama2-7b
+Dataset: xsum_summarization
+Sample: 10
+Max Generate len: 60
+Few shot: 1
+Inference strategy: Dynamic_Skip_Inf
+Experiment Total Time: 00:01:23
+Average Rouge-1 (F): 0.1833
+Average Rouge-2 (F): 0.0405
+Average Rouge-L (F): 0.1245
+Average Token Generate Sum: 60.0000
+Average Skip Layer: 5.6717
+Average Infer Time: 7.0205
+End layer: 29
+Start layer: 29
+Min start layer: 22
+=======================================================
