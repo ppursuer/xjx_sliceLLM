@@ -39,4 +39,10 @@ def pre_setup_skip(model_name):
     if model_name == ModelName.LLAMA2_13B:
         return 37, 37, 25
     elif model_name == ModelName.LLAMA2_7B:
-        return 29, 27, 22  # 目前效果最好
+        return 27, 27, 22  # 目前效果最好
+
+def fix_start_end(model_name):
+    if model_name == ModelName.LLAMA2_13B:
+        return 37, 25
+    elif model_name == ModelName.LLAMA2_7B:
+        return 27, 22

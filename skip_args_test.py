@@ -114,14 +114,12 @@ def main(args):
             # print("avg skip:", avg_skip_layer)
             # print(f"inference time: {token_time:.4f}")       
 
-        ## 每100条数据保存一次日志
-        if (i+1) % 100 == 0:
+        ## 每1000条数据保存一次日志
+        if (i+1) % 1000 == 0:
             with open(log_path, "a", encoding="utf-8") as f:
                 f.write(f"=====前{i+1}条数据=====\n")
                 f.write(metric_skip.summary_formatted())
                 f.write("\n")
-            # print(f"前{i+1}条数据")
-            # print(metric_skip.summary_formatted())
 
     exp_end_time = time.time()
     exp_total_time = exp_end_time - exp_start_time

@@ -97,7 +97,14 @@ def main(args):
             # print("rouge-L:", rl)
             # print("token num:", token_iter+1)
             # print("avg skip:", avg_skip_layer)
-            # print(f"inference time: {token_time:.4f}")       
+            # print(f"inference time: {token_time:.4f}")
+            
+        ## 每1000条数据保存一次日志
+        if (i+1) % 1000 == 0:
+            with open(log_path, "a", encoding="utf-8") as f:
+                f.write(f"=====前{i+1}条数据=====\n")
+                f.write(metric_skip.summary_formatted())
+                f.write("\n")       
 
     exp_end_time = time.time()
     exp_total_time = exp_end_time - exp_start_time
@@ -149,7 +156,7 @@ if __name__ == "__main__":
     parser.add_argument("--cuda", type=int, default=0, help="CUDA device index (e.g. 0,1,2,3)")
     parser.add_argument("--model_name", type=str, default="llama2-7b", help="Path to the model")
     parser.add_argument("--dataset_name", type=str, default="cnn_dm_summarization", help="Dataset to evaluate")
-    parser.add_argument("--samples", type=int, default=10, help="sample to evaluate")
+    parser.add_argument("--samples", type=int, default=-1, help="sample to evaluate")
     parser.add_argument("--shots", type=int, default=1, help="n-shot")
     parser.add_argument("--infer_strategy", type=str, default="Dynamic_Skip_Inf", help="full_inf and skip_inf")
     parser.add_argument("--max_generate_token", type=int, default=60, help="生成token数量")
