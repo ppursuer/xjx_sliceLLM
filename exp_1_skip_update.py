@@ -166,3 +166,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
     args.end_layer,args.start_layer,args.min_start_layer = pre_setup_skip(args.model_name)
     main(args)
+    
