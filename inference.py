@@ -21,8 +21,9 @@ def forward_full(model, input_ids, tokenizer, collector_full):
         # 当前层 top1 token
         logits = model.lm_head(model.model.norm(h_out))
         token_str = tokenizer.decode([torch.argmax(logits, -1).item()])
-        l2 ,cos = collector_full.compute_metric(h_in, h_out)
-        collector_full.add_records("full", i, token_str, l2, cos)
+        l2 ,cos, rel_mag = collector_full.compute_metric(h_in, h_out)
+
+        collector_full.add_records("full", i, token_str, l2, cos, rel_mag)
 
     end_time = time.time()
     total_time = end_time - start_time
@@ -147,7 +148,7 @@ def forward_skip_update(model, input_ids, tokenizer, collector_skip, start_layer
         # 只有在缓冲区（start_layer-1 到 min_start_layer）才检查
         if min_start_layer <= i < start_layer:
             # print(f"layer:{i+1} LRS:", LRS)
-            if LRS <= 0.175:
+            if LRS <= LRS_threshold:
                 buffer_cnt += 1
             else:
                 buffer_cnt = 0

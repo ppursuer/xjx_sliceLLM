@@ -1,0 +1,92 @@
+=====前1000条数据=====
+Average Rouge-1 (F): 0.2034
+Average Rouge-2 (F): 0.0530
+Average Rouge-L (F): 0.1650
+Average Token Generate Sum: 28.0720
+Average Infer Time: 4.6017
+
+=====前2000条数据=====
+Average Rouge-1 (F): 0.2099
+Average Rouge-2 (F): 0.0566
+Average Rouge-L (F): 0.1677
+Average Token Generate Sum: 28.0785
+Average Infer Time: 4.5923
+
+=====前3000条数据=====
+Average Rouge-1 (F): 0.2069
+Average Rouge-2 (F): 0.0546
+Average Rouge-L (F): 0.1650
+Average Token Generate Sum: 27.8473
+Average Infer Time: 4.5584
+
+=====前4000条数据=====
+Average Rouge-1 (F): 0.2077
+Average Rouge-2 (F): 0.0553
+Average Rouge-L (F): 0.1653
+Average Token Generate Sum: 27.8987
+Average Infer Time: 4.5476
+
+=====前5000条数据=====
+Average Rouge-1 (F): 0.2092
+Average Rouge-2 (F): 0.0568
+Average Rouge-L (F): 0.1666
+Average Token Generate Sum: 27.8088
+Average Infer Time: 4.5317
+
+=====前6000条数据=====
+Average Rouge-1 (F): 0.2099
+Average Rouge-2 (F): 0.0567
+Average Rouge-L (F): 0.1667
+Average Token Generate Sum: 27.8255
+Average Infer Time: 4.5400
+
+=====前7000条数据=====
+Average Rouge-1 (F): 0.2103
+Average Rouge-2 (F): 0.0568
+Average Rouge-L (F): 0.1664
+Average Token Generate Sum: 27.8500
+Average Infer Time: 4.5503
+
+=====前8000条数据=====
+Average Rouge-1 (F): 0.2111
+Average Rouge-2 (F): 0.0573
+Average Rouge-L (F): 0.1672
+Average Token Generate Sum: 27.9232
+Average Infer Time: 4.5492
+
+=====前9000条数据=====
+Average Rouge-1 (F): 0.2122
+Average Rouge-2 (F): 0.0578
+Average Rouge-L (F): 0.1679
+Average Token Generate Sum: 27.9178
+Average Infer Time: 4.5677
+
+=====前10000条数据=====
+Average Rouge-1 (F): 0.2138
+Average Rouge-2 (F): 0.0587
+Average Rouge-L (F): 0.1692
+Average Token Generate Sum: 27.9237
+Average Infer Time: 4.5555
+
+=====前11000条数据=====
+Average Rouge-1 (F): 0.2139
+Average Rouge-2 (F): 0.0587
+Average Rouge-L (F): 0.1693
+Average Token Generate Sum: 27.8812
+Average Infer Time: 4.5492
+
+
+================= Overall Evaluation =================
+Model: llama2-7b
+Dataset: xsum_summarization
+Sample: 11334
+Max Generate len: 60
+Few shot: 1
+Inference strategy: Full_Inf
+Experiment Total Time: 14:23:29
+Average Rouge-1 (F): 0.2141
+Average Rouge-2 (F): 0.0588
+Average Rouge-L (F): 0.1695
+Average Token Generate Sum: 27.8617
+Average Infer Time: 4.5461
+=======================================================

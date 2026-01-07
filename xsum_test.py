@@ -31,6 +31,17 @@ def run_full_one(args, evaluation_dataset, tokenizer, model, device):
         "\n", "\t",             # 换行 / tab
     ]
 
+    # 获取当前脚本所在目录
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    # 在当前路径平级的 logs 目录
+    log_dir = os.path.join(current_dir, f"logs/test_xsum")
+    os.makedirs(log_dir, exist_ok=True)
+
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+
+    # 构建日志文件路径 log
+    log_path = os.path.join(log_dir, f"full_one_{len(evaluation_dataset)}_{timestamp}.log")
+
     for i, data_point in enumerate(tqdm(evaluation_dataset, desc="Evaluating")):
         input_text = data_point.input
         ref_text = data_point.ref
@@ -64,6 +75,13 @@ def run_full_one(args, evaluation_dataset, tokenizer, model, device):
             # print("token num:", token_iter+1)
             # print(f"inference time: {token_time:.4f}")
 
+        ## 每1000条数据保存一次日志
+        if (i+1) % 1000 == 0:
+            with open(log_path, "a", encoding="utf-8") as f:
+                f.write(f"=====前{i+1}条数据=====\n")
+                f.write(metric_full.summary_formatted())
+                f.write("\n")     
+
     exp_end_time = time.time()
     exp_total_time = exp_end_time - exp_start_time
     # 转换为 HH:MM:SS 格式
@@ -71,16 +89,16 @@ def run_full_one(args, evaluation_dataset, tokenizer, model, device):
     minutes = int((exp_total_time  % 3600) // 60)
     seconds = int(exp_total_time  % 60)
     formatted_time_2 = f"{hours:02d}:{minutes:02d}:{seconds:02d}"
-    # 获取当前脚本所在目录
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    # 在当前路径平级的 logs 目录
-    log_dir = os.path.join(current_dir, f"logs/xsum_test")
-    os.makedirs(log_dir, exist_ok=True)
+    # # 获取当前脚本所在目录
+    # current_dir = os.path.dirname(os.path.abspath(__file__))
+    # # 在当前路径平级的 logs 目录
+    # log_dir = os.path.join(current_dir, f"logs/test_xsum")
+    # os.makedirs(log_dir, exist_ok=True)
 
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    # timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 
-    # 构建日志文件路径 log
-    log_path = os.path.join(log_dir, f"full_one_{timestamp}.log")
+    # # 构建日志文件路径 log
+    # log_path = os.path.join(log_dir, f"full_one_{len(evaluation_dataset)}_{timestamp}.log")
     
     # 生成要写入的文本内容
     summary_text = (
@@ -154,7 +172,7 @@ def run_full_max(args, evaluation_dataset, tokenizer, model, device):
     # 获取当前脚本所在目录
     current_dir = os.path.dirname(os.path.abspath(__file__))
     # 在当前路径平级的 logs 目录
-    log_dir = os.path.join(current_dir, f"logs/xsum_test")
+    log_dir = os.path.join(current_dir, f"logs/test_xsum")
     os.makedirs(log_dir, exist_ok=True)
 
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -189,6 +207,18 @@ def run_skip_one(args, evaluation_dataset, tokenizer, model, device):
         ".", "!", "?",          # 句子终止符
         "\n", "\t",             # 换行 / tab
     ]
+
+    # 获取当前脚本所在目录
+    current_dir = os.path.dirname(os.path.abspath(__file__))   
+    # 在当前路径平级的 logs 目录
+    log_dir = os.path.join(current_dir, f"logs/test_xsum")
+    os.makedirs(log_dir, exist_ok=True)
+
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+
+    # 构建日志文件路径
+    log_path = os.path.join(log_dir, f"skip_one_{len(evaluation_dataset)}_{timestamp}.log")
+
 
     for i, data_point in enumerate(tqdm(evaluation_dataset, desc="Evaluating")):
         input_text = data_point.input
@@ -242,6 +272,13 @@ def run_skip_one(args, evaluation_dataset, tokenizer, model, device):
             # print("avg skip:", avg_skip_layer)
             # print(f"inference time: {token_time:.4f}")       
 
+        ## 每1000条数据保存一次日志
+        if (i+1) % 1000 == 0:
+            with open(log_path, "a", encoding="utf-8") as f:
+                f.write(f"=====前{i+1}条数据=====\n")
+                f.write(metric_skip.summary_formatted())
+                f.write("\n")     
+
     exp_end_time = time.time()
     exp_total_time = exp_end_time - exp_start_time
     # 转换为 HH:MM:SS 格式
@@ -249,16 +286,7 @@ def run_skip_one(args, evaluation_dataset, tokenizer, model, device):
     minutes = int((exp_total_time  % 3600) // 60)
     seconds = int(exp_total_time  % 60)
     formatted_time_2 = f"{hours:02d}:{minutes:02d}:{seconds:02d}"
-    # 获取当前脚本所在目录
-    current_dir = os.path.dirname(os.path.abspath(__file__))   
-    # 在当前路径平级的 logs 目录
-    log_dir = os.path.join(current_dir, f"logs/xsum_test")
-    os.makedirs(log_dir, exist_ok=True)
-
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-
-    # 构建日志文件路径
-    log_path = os.path.join(log_dir, f"skip_one_{timestamp}.log")
+    
     
     # 生成要写入的文本内容
     summary_text = (
@@ -355,7 +383,7 @@ def run_skip_max(args, evaluation_dataset, tokenizer, model, device):
     # 获取当前脚本所在目录
     current_dir = os.path.dirname(os.path.abspath(__file__))   
     # 在当前路径平级的 logs 目录
-    log_dir = os.path.join(current_dir, f"logs/xsum_test")
+    log_dir = os.path.join(current_dir, f"logs/test_xsum")
     os.makedirs(log_dir, exist_ok=True)
 
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -400,10 +428,10 @@ def main(args):
     tokenizer, model, device = get_tokenizer_and_model(args.model_name, args.cuda)
 
     run_full_one(args, evaluation_dataset, tokenizer, model, device)
-    run_full_max(args, evaluation_dataset, tokenizer, model, device)
+    # run_full_max(args, evaluation_dataset, tokenizer, model, device)
 
     run_skip_one(args, evaluation_dataset, tokenizer, model, device)
-    run_skip_max(args, evaluation_dataset, tokenizer, model, device)
+    # run_skip_max(args, evaluation_dataset, tokenizer, model, device)
     
 
 if __name__ == "__main__":
@@ -411,11 +439,11 @@ if __name__ == "__main__":
     parser.add_argument("--cuda", type=int, default=0, help="CUDA device index (e.g. 0,1,2,3)")
     parser.add_argument("--model_name", type=str, default="llama2-7b", help="Path to the model")
     parser.add_argument("--dataset_name", type=str, default="xsum_summarization", help="Dataset to evaluate")
-    parser.add_argument("--samples", type=int, default=1000, help="sample to evaluate")
+    parser.add_argument("--samples", type=int, default=-1, help="sample to evaluate")
     parser.add_argument("--shots", type=int, default=1, help="n-shot")
     parser.add_argument("--infer_strategy", type=str, default="Full_Inf", help="full_inf and skip_inf")
     parser.add_argument("--max_generate_token", type=int, default=60, help="最大生成token数量")
-    parser.add_argument("--LRS_threshold", type=float, default=0.175, help="阈值")
+    parser.add_argument("--LRS_threshold", type=float, default=0.185, help="阈值")
     args = parser.parse_args()
     args.end_layer,args.start_layer,args.min_start_layer = pre_setup_skip(args.model_name)
     main(args)

@@ -146,20 +146,25 @@ class LayerwiseHiddenDiffCollector_full:
         l2 = torch.norm(h_out_last - h_in_last, p=2).item()
         cos = F.cosine_similarity(h_in_last, h_out_last, dim=-1).mean().item()
 
+        # 相对幅度 Relative Magnitude
+        h_in_norm = torch.norm(h_in_last, p=2).item()
+        rel_mag = l2 / (h_in_norm)  
+
         # if l2>=self.max_l2:
         #     self.max_l2 = l2
 
         # index = self.compute_cos_l2(cos, l2)
 
-        return l2, cos
+        return l2, cos, rel_mag
 
-    def add_records(self, mode, layer_idx, token_str, l2, cos):
+    def add_records(self, mode, layer_idx, token_str, l2, cos, rel_mag=0):
         self.records.append({
             "mode": mode,
             "layer": layer_idx,
             "token": token_str,
             "l2": l2,
-            "cos": cos
+            "cos": cos,
+            "rel_mag": rel_mag
         })
 
 class LayerwiseHiddenDiffCollector_skip:

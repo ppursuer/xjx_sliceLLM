@@ -43,6 +43,18 @@ def main(args):
         ".", "!", "?",          # 句子终止符
         "\n", "\t",             # 换行 / tab
     ]
+    
+    # 获取当前脚本所在目录
+    current_dir = os.path.dirname(os.path.abspath(__file__))   
+    # 在当前路径平级的 logs 目录
+    log_dir = os.path.join(current_dir, f"logs/{args.infer_strategy}/{args.model_name}/{args.dataset_name}")
+    os.makedirs(log_dir, exist_ok=True)
+
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+
+    # 构建日志文件路径
+    log_path = os.path.join(log_dir, f"{len(evaluation_dataset)}_{args.max_generate_token}_{timestamp}.log")
+    
 
     for i, data_point in enumerate(tqdm(evaluation_dataset, desc="Evaluating")):
         input_text = data_point.input
@@ -98,7 +110,7 @@ def main(args):
             # print("token num:", token_iter+1)
             # print("avg skip:", avg_skip_layer)
             # print(f"inference time: {token_time:.4f}")
-            
+
         ## 每1000条数据保存一次日志
         if (i+1) % 1000 == 0:
             with open(log_path, "a", encoding="utf-8") as f:
@@ -113,17 +125,7 @@ def main(args):
     minutes = int((exp_total_time  % 3600) // 60)
     seconds = int(exp_total_time  % 60)
     formatted_time_2 = f"{hours:02d}:{minutes:02d}:{seconds:02d}"
-    # 获取当前脚本所在目录
-    current_dir = os.path.dirname(os.path.abspath(__file__))   
-    # 在当前路径平级的 logs 目录
-    log_dir = os.path.join(current_dir, f"logs/{args.infer_strategy}/{args.model_name}/{args.dataset_name}")
-    os.makedirs(log_dir, exist_ok=True)
 
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-
-    # 构建日志文件路径
-    log_path = os.path.join(log_dir, f"{len(evaluation_dataset)}_{args.max_generate_token}_{timestamp}.log")
-    
     # 生成要写入的文本内容
     summary_text = (
         "\n================= Overall Evaluation =================\n"

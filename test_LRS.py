@@ -16,9 +16,10 @@ from model_and_tokenizer import get_tokenizer_and_model, pre_setup_skip
 from metric_collector import Metric_Skip, LayerwiseHiddenDiffCollector_skip
 from inference import forward_skip, forward_skip_update
 
+
 """
-skip 
-llama2-7b
+test 
+skip LRS
 
 """
 
@@ -46,13 +47,13 @@ def main(args):
     # 获取当前脚本所在目录
     current_dir = os.path.dirname(os.path.abspath(__file__))   
     # 在当前路径平级的 logs 目录
-    log_dir = os.path.join(current_dir, f"logs/args_test/{args.model_name}/{args.dataset_name}")
+    log_dir = os.path.join(current_dir, f"logs/test_LRS")
     os.makedirs(log_dir, exist_ok=True)
 
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 
     # 构建日志文件路径
-    log_path = os.path.join(log_dir, f"{len(evaluation_dataset)}_{timestamp}.log")
+    log_path = os.path.join(log_dir, f"LRS_{args.LRS_threshold}_{timestamp}.log")
 
     for i, data_point in enumerate(tqdm(evaluation_dataset, desc="Evaluating")):
         input_text = data_point.input
@@ -85,15 +86,11 @@ def main(args):
                                                             args.LRS_threshold,
                                                             )
                 token_time += infer_time
-                # end_time = time.time()
-                # infer_time += end_time - start_time
                 # print(skip_sum)
                 total_skip_layer += skip_sum
                 # if args.dataset_name == "xsum_summarization" and next_token_id == tokenizer.eos_token_id or any(s in next_token_str for s in stop_tokens):
                 #     break
 
-            # end_time = time.time()
-            # infer_time = end_time-start_time
             if total_skip_layer ==0 or token_iter ==0:
                 avg_skip_layer = 0
             else:
@@ -124,17 +121,6 @@ def main(args):
     seconds = int(exp_total_time  % 60)
     formatted_time_2 = f"{hours:02d}:{minutes:02d}:{seconds:02d}"
     
-    # # 获取当前脚本所在目录
-    # current_dir = os.path.dirname(os.path.abspath(__file__))   
-    # # 在当前路径平级的 logs 目录
-    # log_dir = os.path.join(current_dir, f"logs/args_test/{args.model_name}/{args.dataset_name}")
-    # os.makedirs(log_dir, exist_ok=True)
-
-    # timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-
-    # # 构建日志文件路径
-    # log_path = os.path.join(log_dir, f"{len(evaluation_dataset)}_{timestamp}.log")
-    
     # 生成要写入的文本内容
     summary_text = (
         "\n================= Overall Evaluation =================\n"
@@ -149,6 +135,7 @@ def main(args):
         f"End layer: {args.end_layer}\n"
         f"Start layer: {args.start_layer}\n"
         f"Min start layer: {args.min_start_layer}\n"
+        f"LRS threshold: {args.LRS_threshold}"
         "=======================================================\n"
     )
     print(summary_text)
@@ -157,26 +144,20 @@ def main(args):
         f.write(summary_text)
     print(f"Evaluation results saved to: {log_path}")
 
-    # # 保存整个数据集上的skip inference输出结果
-    # csv_path = os.path.join(log_dir, f"output.csv")
-    # metric_skip.save_output_csv(csv_path)
-
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run model evaluation")
     parser.add_argument("--cuda", type=int, default=0, help="CUDA device index (e.g. 0,1,2,3)")
     parser.add_argument("--model_name", type=str, default="llama2-7b", help="Path to the model")
-    parser.add_argument("--dataset_name", type=str, default="xsum_summarization", help="Dataset to evaluate")
-    parser.add_argument("--samples", type=int, default=10, help="sample to evaluate")
+    parser.add_argument("--dataset_name", type=str, default="cnn_dm_summarization", help="Dataset to evaluate")
+    parser.add_argument("--samples", type=int, default=-1, help="sample to evaluate")
     parser.add_argument("--shots", type=int, default=1, help="n-shot")
     parser.add_argument("--infer_strategy", type=str, default="Dynamic_Skip_Inf", help="full_inf and skip_inf")
     parser.add_argument("--max_generate_token", type=int, default=60, help="生成token数量")
     
-    parser.add_argument("--end_layer", type=int, default=29, help="跳层结束层")
-    parser.add_argument("--start_layer", type=int, default=29, help="跳层开始层")
+    parser.add_argument("--end_layer", type=int, default=27, help="跳层结束层")
+    parser.add_argument("--start_layer", type=int, default=27, help="跳层开始层")
     parser.add_argument("--min_start_layer", type=int, default=22, help="")
     parser.add_argument("--LRS_threshold", type=float, default=0.175, help="阈值")
 
     args = parser.parse_args()
-    # args.end_layer,args.start_layer,args.min_start_layer = pre_setup_skip(args.model_name)
-    # args.end_layer,args.start_layer,args.min_start_layer = 
     main(args)

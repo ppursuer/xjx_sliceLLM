@@ -11,7 +11,7 @@ class DatasetPath:
     CNN_DM_SUMMARIZATION: str = "/root/datasets/cnn"
     # XSUM_SUMMARIZATION: str = "/mnt/Data/xjx/data/xsum/data"
     XSUM_SUMMARIZATION: str = "/root/datasets/xsum"
-    HUMAN_EVAL: str = "/mnt/Data/xjx/data/human_eval"
+    HUMAN_EVAL: str = "/root/datasets/human_eval"
 
 class DatasetFormat:
     CNN_DM_SUMMARIZATION: str = "cnn_dm_summarization"
@@ -187,6 +187,26 @@ Highlights:{prompt_item[0][prompt_keys[1]]}
         )
     return evaluation_dataset 
 
+def prepare_human_eval(path):
+    dataset = datasets.load_dataset(
+        "parquet",
+        data_files={
+            "test": f"{path}/test-00000-of-00001.parquet",
+        }
+    )
+    test_dataset = dataset["test"]  
+
+    evaluation_dataset = []
+    for item in test_dataset:
+        prompt = item["prompt"]
+        evaluation_dataset.append(
+            EvaluationExample(
+                input=prompt,
+                ref=item["canonical_solution"],
+            )
+        )
+    return evaluation_dataset
+
 def get_data(dataset_name, samples, shots):
     if dataset_name == DatasetFormat.CNN_DM_SUMMARIZATION:
         path = DatasetPath.CNN_DM_SUMMARIZATION
@@ -202,9 +222,9 @@ def get_data(dataset_name, samples, shots):
         else :
             evaluation_dataset = get_xsum_summarization_all_fewshot(path, shots)
 
-    # elif dataset_name == DatasetFormat.HUMAN_EVAL:
-    #     path = DatasetPath.HUMAN_EVAL
-        # evaluation_dataset = prepare_human_eval_format(path)
+    elif dataset_name == DatasetFormat.HUMAN_EVAL:
+        path = DatasetPath.HUMAN_EVAL
+        evaluation_dataset = prepare_human_eval(path)
 
     return evaluation_dataset
 

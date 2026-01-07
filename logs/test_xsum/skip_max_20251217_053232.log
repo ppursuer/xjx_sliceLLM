@@ -1,0 +1,20 @@
+
+================= Overall Evaluation =================
+Model: llama2-7b
+Dataset: xsum_summarization
+Sample: 1000
+Max Generate len: 60
+Few shot: 1
+Inference strategy: Full_Inf
+Experiment Total Time: 02:23:18
+Average Rouge-1 (F): 0.1967
+Average Rouge-2 (F): 0.0486
+Average Rouge-L (F): 0.1535
+Average Token Generate Sum: 60.0000
+Average Skip Layer: 4.3504
+Average Infer Time: 8.5742
+End layer: 27
+Start layer: 27
+Min start layer: 22
+LRS threshold: 0.175
+=======================================================

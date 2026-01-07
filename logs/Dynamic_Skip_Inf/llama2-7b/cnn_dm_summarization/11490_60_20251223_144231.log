@@ -1,0 +1,108 @@
+=====前1000条数据=====
+Average Rouge-1 (F): 0.2866
+Average Rouge-2 (F): 0.0989
+Average Rouge-L (F): 0.2049
+Average Token Generate Sum: 60.0000
+Average Skip Layer: 4.7324
+Average Infer Time: 10.7841
+
+=====前2000条数据=====
+Average Rouge-1 (F): 0.3153
+Average Rouge-2 (F): 0.1163
+Average Rouge-L (F): 0.2201
+Average Token Generate Sum: 60.0000
+Average Skip Layer: 4.7121
+Average Infer Time: 10.3986
+
+=====前3000条数据=====
+Average Rouge-1 (F): 0.3258
+Average Rouge-2 (F): 0.1234
+Average Rouge-L (F): 0.2254
+Average Token Generate Sum: 60.0000
+Average Skip Layer: 4.7029
+Average Infer Time: 10.3072
+
+=====前4000条数据=====
+Average Rouge-1 (F): 0.3309
+Average Rouge-2 (F): 0.1268
+Average Rouge-L (F): 0.2272
+Average Token Generate Sum: 60.0000
+Average Skip Layer: 4.6984
+Average Infer Time: 10.2449
+
+=====前5000条数据=====
+Average Rouge-1 (F): 0.3302
+Average Rouge-2 (F): 0.1263
+Average Rouge-L (F): 0.2266
+Average Token Generate Sum: 60.0000
+Average Skip Layer: 4.6997
+Average Infer Time: 10.4408
+
+=====前6000条数据=====
+Average Rouge-1 (F): 0.3316
+Average Rouge-2 (F): 0.1275
+Average Rouge-L (F): 0.2279
+Average Token Generate Sum: 60.0000
+Average Skip Layer: 4.7083
+Average Infer Time: 10.6521
+
+=====前7000条数据=====
+Average Rouge-1 (F): 0.3334
+Average Rouge-2 (F): 0.1287
+Average Rouge-L (F): 0.2290
+Average Token Generate Sum: 60.0000
+Average Skip Layer: 4.7153
+Average Infer Time: 10.8311
+
+=====前8000条数据=====
+Average Rouge-1 (F): 0.3339
+Average Rouge-2 (F): 0.1285
+Average Rouge-L (F): 0.2291
+Average Token Generate Sum: 60.0000
+Average Skip Layer: 4.7191
+Average Infer Time: 10.9463
+
+=====前9000条数据=====
+Average Rouge-1 (F): 0.3349
+Average Rouge-2 (F): 0.1296
+Average Rouge-L (F): 0.2297
+Average Token Generate Sum: 60.0000
+Average Skip Layer: 4.7229
+Average Infer Time: 11.0386
+
+=====前10000条数据=====
+Average Rouge-1 (F): 0.3347
+Average Rouge-2 (F): 0.1291
+Average Rouge-L (F): 0.2296
+Average Token Generate Sum: 60.0000
+Average Skip Layer: 4.7266
+Average Infer Time: 11.1148
+
+=====前11000条数据=====
+Average Rouge-1 (F): 0.3347
+Average Rouge-2 (F): 0.1292
+Average Rouge-L (F): 0.2296
+Average Token Generate Sum: 60.0000
+Average Skip Layer: 4.7290
+Average Infer Time: 11.2008
+
+
+================= Overall Evaluation =================
+Model: llama2-7b
+Dataset: cnn_dm_summarization
+Sample: 11490
+Max Generate len: 60
+Few shot: 1
+Inference strategy: Dynamic_Skip_Inf
+Experiment Total Time: 35:56:22
+Average Rouge-1 (F): 0.3351
+Average Rouge-2 (F): 0.1292
+Average Rouge-L (F): 0.2297
+Average Token Generate Sum: 60.0000
+Average Skip Layer: 4.7299
+Average Infer Time: 11.2278
+End layer: 27
+Start layer: 27
+Min start layer: 22
+LRS threshold: 0.185
+=======================================================

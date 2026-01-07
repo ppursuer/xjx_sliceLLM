@@ -1,0 +1,27 @@
+=====前1000条数据=====
+Average Rouge-1 (F): 0.3404
+Average Rouge-2 (F): 0.1315
+Average Rouge-L (F): 0.2311
+Average Token Generate Sum: 60.0000
+Average Skip Layer: 4.7290
+Average Infer Time: 11.1514
+
+
+================= Overall Evaluation =================
+Model: llama2-7b
+Dataset: cnn_dm_summarization
+Sample: 1000
+Max Generate len: 60
+Few shot: 1
+Inference strategy: Dynamic_Skip_Inf
+Experiment Total Time: 03:06:25
+Average Rouge-1 (F): 0.3404
+Average Rouge-2 (F): 0.1315
+Average Rouge-L (F): 0.2311
+Average Token Generate Sum: 60.0000
+Average Skip Layer: 4.7290
+Average Infer Time: 11.1514
+End layer: 27
+Start layer: 27
+Min start layer: 22
+LRS threshold: 0.185=======================================================
